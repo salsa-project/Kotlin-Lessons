@@ -1,0 +1,86 @@
+//make Toast:-------------------------
+
+	1-Toast.makeText(this,"Text here",Toast.LENGTH_SHORT).show()
+
+//intent (go to the other activities):--------------------	
+
+	1-  var intent= Intent(this,2ndActivity::class.java)
+                startActivity(intent)
+                finish()
+
+//create webview :-------------------------
+	1-add webview in xml
+
+	2-val name = webview ID
+
+	3-name.webViewClient= WebViewClient()
+	  name.settings.javaScriptEnabled=true
+	  name.loadUrl("http://exodya.com")
+
+ //back on history :-------------------------
+
+ 1-override fun onBackPressed() {
+         var name = webview ID
+        if (name.canGoBack()) {
+            name.goBack()
+        } else {}
+
+//add webview proggress bar + add textprogress in textview(n%) + conditions :-------------------------
+
+	1-add textview in xml
+
+	2-add framelayout in xml
+	  add Progressbar in it
+
+	3-var FLname = framelayout ID
+
+	4-var pbname = progressbar ID
+
+	5-var tvname  = textview ID
+
+	6-name.max = 100
+
+	7- myWebview.webChromeClient = object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView, progress: Int) { progressbarID.progress = progress
+
+                if(progress < 90) {
+                    loadPrs.text = " %" + progress
+                    myWebview.visibility = View.GONE
+                    frameLayout.visibility = View.VISIBLE
+                }
+                if (progress >= 95) {
+                    FrameLayout.visibility = View.GONE
+                    myWebview.visibility = View.VISIBLE
+                }
+            }
+        }
+
+//hundler (fire after delay) :
+ 
+ 	 1-Handler()
+            Handler().postDelayed({
+                TODOHere
+            }, 1500)
+
+//check connection :
+
+	1-add to minifest after apckage name :
+	 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    2-put in oncreate:
+    checkConnectivity()
+
+    3-put out of oncreate :
+    fun checkConnectivity(){
+
+        val cm=getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork =cm.activeNetworkInfo
+        val isConnected=activeNetwork != null && activeNetwork.isConnectedOrConnecting
+        3-put conditions :
+         if (isConnected){
+
+          }else if (!isConnected){ 
+
+          }           
+
