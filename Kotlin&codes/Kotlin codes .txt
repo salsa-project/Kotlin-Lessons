@@ -83,4 +83,17 @@
           }else if (!isConnected){ 
 
           }           
+	  
+	  
 
+//global function (function that yoou can call it from any  where):
+
+    1-create kotlin file ex: Utils.KT
+    2-put that function inside Utils.KT + add ctx:Context parameters to it and make it return boolean ex:
+            fun checkConnectivity(ctx: Context): Boolean {
+        val cm = ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork =cm.activeNetworkInfo
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting
+       }
+    3-call from any where like that ex:
+        checkConnectivity(this@Activityname)
